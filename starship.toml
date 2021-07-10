@@ -1,0 +1,39 @@
+command_timeout = 5000
+
+[git_branch]
+format = "[$symbol$branch]($style) "
+symbol = " "
+style = "green"
+
+[package]
+disabled = true
+
+[nix_shell]
+style = "cyan"
+format = "[nix-$state]($style) "
+
+[character]
+success_symbol = "\\(・ω・\\)ﾉ"
+error_symbol = "\\(゜Д゜;\\)"
+vicmd_symbol = "\\(´ ▽ `\\)v"
+
+[cmd_duration]
+disabled = true
+
+[openstack]
+disabled = true
+
+[aws]
+disabled = true
+
+[username]
+disabled = true
+
+[hostname]
+disabled = true
+
+[nodejs]
+symbol = "node:"
+
+[php]
+symbol = "php:"
