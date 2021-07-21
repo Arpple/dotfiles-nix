@@ -25,12 +25,19 @@
     zstd
     editorconfig-core-c
     sqlite
+
     nodejs
     nodePackages.javascript-typescript-langserver
     nodePackages.eslint
+
     php
+
     elixir
     elixir_ls
+
+    ghc
+    haskell-language-server
+    stack
   ];
 
   fonts.fontconfig.enable = true;
