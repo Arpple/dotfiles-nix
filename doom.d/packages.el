@@ -8,3 +8,4 @@
 (package! indium)
 (package! fish-mode)
 (package! google-this)
+(package! phpactor)

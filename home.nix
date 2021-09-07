@@ -18,6 +18,7 @@
     direnv
     any-nix-shell
     dmenu
+    firefox
     
     (ripgrep.override { withPCRE2 = true; })
     fd
@@ -29,11 +30,12 @@
     nodejs
     nodePackages.javascript-typescript-langserver
     nodePackages.eslint
-
     php
-
     elixir
     elixir_ls
+    elmPackages.elm
+    clojure
+    leiningen
 
     ghc
     haskell-language-server

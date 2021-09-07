@@ -89,6 +89,13 @@
             (lambda ()
               (add-hook 'after-save-hook 'alchemist-iex-reload-module))))
 
+
+;; clojure
+(with-eval-after-load 'evil
+  (defalias #'forward-evil-word #'forward-evil-symbol)
+  (setq-default evil-symbol-word-search t))
+
+
 ;; personal dir
 (defun arp/dir ()
   "open .arpple dir"
@@ -129,6 +136,7 @@
  ;; If there is more than one, they won't work right.
  '(elixir-atom-face ((t (:inherit font-lock-constant-face :foreground "#BD63C5"))))
  '(font-lock-comment-face ((t (:foreground "yellow" :slant italic))))
+ '(font-lock-doc-face ((t (:foreground "yellow" :slant italic))))
  '(font-lock-constant-face ((t (:foreground "#BD63C5"))))
  '(font-lock-function-name-face ((t (:foreground "#A6FF2E"))))
  '(font-lock-variable-name-face ((t (:foreground "#3BDAAF"))))
