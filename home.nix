@@ -36,6 +36,8 @@
     elmPackages.elm
     clojure
     leiningen
+    clj-kondo
+    python3
 
     ghc
     haskell-language-server
