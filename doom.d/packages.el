@@ -12,3 +12,4 @@
 (package! google-this)
 (package! phpactor)
 (package! flycheck-clj-kondo)
+(package! handlebars-mode)

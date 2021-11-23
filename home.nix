@@ -1,6 +1,8 @@
 { config, pkgs, ... }:
 
-{
+let
+  unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
+in {
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
   home.username = "arpple";
@@ -26,17 +28,31 @@
     zstd
     editorconfig-core-c
     sqlite
+    gcc
+    unzip
+    nixfmt
+    xclip
+    maim
+    html-tidy
+    shellcheck
+    pandoc
 
-    nodejs
+    unstable.nodejs
     nodePackages.javascript-typescript-langserver
     nodePackages.eslint
+
     php
-    elixir
+    php74Packages.composer
+
+    unstable.elixir
     elixir_ls
+
     elmPackages.elm
+
     clojure
     leiningen
     clj-kondo
+
     python3
 
     ghc
@@ -55,6 +71,7 @@
     enable = true;
 
     loginShellInit = ''
+      emacs --daemon &
       exec startx -- -keeptty
     '';
 
@@ -62,6 +79,10 @@
       set -xg PATH ~/.emacs.d/bin $PATH
       any-nix-shell fish --info-right | source
     '';
+
+    shellAliases = {
+      emacs = "emacsclient -c -a 'emacs'";
+    };
   };
 
   xsession.windowManager.xmonad = {
