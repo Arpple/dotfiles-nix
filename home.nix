@@ -82,6 +82,7 @@ in {
 
     shellAliases = {
       emacs = "emacsclient -c -a 'emacs'";
+      psql-connect = "sudo -u postgres psql";
     };
   };
 

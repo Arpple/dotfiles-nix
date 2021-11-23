@@ -41,7 +41,18 @@ git clone --depth 1 https://github.com/hlissner/doom-emacs ~/.emacs.d
 #+end_src
 
 ** Troubleshoots
+*** sqlite error on non-exists command
 sqlite error when running non-exists command
-#+begin_src
+#+begin_src fish
 sudo nix-channel --update
+#+end_src
+*** setup postgres password
+connect to postgres with alias helper
+#+begin_src fish
+psql-connect
+#+end_src
+
+enter sql
+#+begin_src sql
+ALTER USER postgres PASSWORD 'postgres';
 #+end_src
