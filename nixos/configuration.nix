@@ -63,7 +63,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.arpple = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "docker" ]; # Enable ‘sudo’ for the user.
     shell = pkgs.fish;
   };
   
@@ -79,6 +79,7 @@
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
     git
+    docker-compose
   ];
 
   programs.fish.enable = true;
@@ -99,6 +100,8 @@
   services.postgresql = {
     enable = true;
   };
+
+  virtualisation.docker.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
