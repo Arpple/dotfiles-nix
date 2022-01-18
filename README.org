@@ -56,3 +56,10 @@ enter sql
 #+begin_src sql
 ALTER USER postgres PASSWORD 'postgres';
 #+end_src
+
+*** npm install error with building node-gyp
+use local node instead of global
+#+begin_src fish
+nix-shell -p nodejs-16_x # or other version
+npm install
+#+end_src
