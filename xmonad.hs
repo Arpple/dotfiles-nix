@@ -23,7 +23,7 @@ startup = do
   spawnOnce "alacritty"
 
 
-myLayout = Full ||| tiled ||| Mirror tiled
+myLayout = Full ||| Mirror tiled
   where tiled = Tall 1 (3/100) (1/2)
 
 
