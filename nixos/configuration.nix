@@ -103,6 +103,12 @@
 
   virtualisation.docker.enable = true;
 
+  fileSystems."/virtualboxshare" = {
+    fsType = "vboxsf";
+    device = "VMShare";
+    options = ["rw"];
+  };
+
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];

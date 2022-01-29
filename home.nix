@@ -20,7 +20,10 @@ in {
     direnv
     any-nix-shell
     dmenu
+    awscli2
+
     firefox
+    lens
     
     (ripgrep.override { withPCRE2 = true; })
     fd
@@ -36,6 +39,8 @@ in {
     html-tidy
     shellcheck
     pandoc
+    binutils
+    gnumake
 
     unstable.nodejs
     nodePackages.javascript-typescript-langserver

@@ -63,3 +63,9 @@ use local node instead of global
 nix-shell -p nodejs-16_x # or other version
 npm install
 #+end_src
+
+*** dmenu application not update
+clear cache
+#+begin_src fish
+rm ~/.cache/dmenu_run
+#+end_src

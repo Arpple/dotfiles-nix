@@ -60,7 +60,7 @@
 
 (add-hook! 'typescript-mode-hook
   ;; use eslint for typescript
-  (flycheck-select-checker 'javascript-eslint)
+  ;; (flycheck-select-checker 'javascript-eslint)
   (map! :n "<f2>" #'tide-rename-symbol))
 
 
@@ -94,7 +94,6 @@
 (with-eval-after-load 'evil
   (defalias #'forward-evil-word #'forward-evil-symbol)
   (setq-default evil-symbol-word-search t))
-
 
 ;; personal dir
 (defun arp/dir ()
