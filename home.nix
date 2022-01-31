@@ -76,7 +76,6 @@ in {
     enable = true;
 
     loginShellInit = ''
-      emacs --daemon &
       exec startx -- -keeptty
     '';
 
@@ -86,7 +85,6 @@ in {
     '';
 
     shellAliases = {
-      emacs = "emacsclient -c -a 'emacs'";
       psql-connect = "sudo -u postgres psql";
     };
   };
