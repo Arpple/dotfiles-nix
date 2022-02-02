@@ -50,6 +50,14 @@
 ;; treemacs
 (setq treemacs-width 30)
 
+(defface custom-line-highlight '((t (:background "#353535" :extend t))) "")
+(add-hook
+ 'treemacs-mode-hook
+ (defun channge-hl-line-mode ()
+   (setq-local hl-line-face 'custom-line-highlight)
+   (overlay-put hl-line-overlay 'face hl-line-face)
+   (treemacs--setup-icon-background-colors)))
+
 (after! treemacs
   (treemacs-follow-mode))
 
