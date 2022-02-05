@@ -69,3 +69,8 @@ clear cache
 #+begin_src fish
 rm ~/.cache/dmenu_run
 #+end_src
+
+*** start emacs server
+#+begin_src fish
+systemctl --user enable --now emacs
+#+end_src

@@ -82,10 +82,14 @@ in {
     shellInit = ''
       set -xg PATH ~/.emacs.d/bin $PATH
       any-nix-shell fish --info-right | source
+      function ec
+        emacsclient -c &
+      end
     '';
 
     shellAliases = {
       psql-connect = "sudo -u postgres psql";
+      e = "emacsclient -n";
     };
   };
 
