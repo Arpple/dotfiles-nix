@@ -66,7 +66,10 @@
     extraGroups = [ "wheel" "docker" ]; # Enable ‘sudo’ for the user.
     shell = pkgs.fish;
   };
-  
+
+  services.upower.ignoreLid = true;
+  services.logind.extraConfig = "IdleAction=ignore";
+
   fonts.fonts = with pkgs; [
     powerline-fonts
   ];
@@ -121,7 +124,7 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "21.05"; # Did you read the comment?
+  system.stateVersion = "21.11"; # Did you read the comment?
 
 }
 

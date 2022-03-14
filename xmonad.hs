@@ -3,20 +3,31 @@ import XMonad.Util.EZConfig
 import XMonad.Util.SpawnOnce
 import XMonad.Actions.GridSelect
 import XMonad.Util.CustomKeys
+import XMonad.Util.Run
+import XMonad.Hooks.DynamicLog
+import XMonad.Hooks.ManageDocks
 
-main = xmonad $ def
-  { terminal = "alacritty"
-  , modMask = mod4Mask
-  , borderWidth = 3
-  , normalBorderColor = "darkgray"
-  , focusedBorderColor = "white"
-  , focusFollowsMouse = False
-  , startupHook = startup
-  , layoutHook = myLayout
-  }
-  `additionalKeys`
-  [ ((mod4Mask, xK_Tab), goToSelected $ myGsConfig myColorizer)
-  ]
+main = do
+  xmproc <- spawnPipe "xmobar ~/.xmonad/xmobar.hs"
+  xmonad $ docks defaultConfig
+    { manageHook = manageDocks <+> manageHook defaultConfig
+    , terminal = "alacritty"
+    , modMask = mod4Mask
+    , borderWidth = 3
+    , normalBorderColor = "darkgray"
+    , focusedBorderColor = "yellow"
+    , focusFollowsMouse = False
+    , startupHook = startup
+    , workspaces = myWorkspaces
+    , layoutHook = avoidStruts $ myLayout
+    , logHook = dynamicLogWithPP xmobarPP
+      { ppOutput = hPutStrLn xmproc
+      , ppTitle = xmobarColor "green" "" . shorten 50
+      }
+    }
+    `additionalKeys`
+    [ ((mod4Mask, xK_Tab), goToSelected $ myGsConfig myColorizer)
+    ]
 
 startup :: X ()
 startup = do
@@ -24,7 +35,7 @@ startup = do
 
 
 myLayout = Full ||| Mirror tiled
-  where tiled = Tall 1 (3/100) (1/2)
+  where tiled = Tall 1 (3/100) (3/4)
 
 
 myColorizer =
@@ -44,3 +55,5 @@ myGsConfig colorizer =
     , gs_originFractX = 0.5
     , gs_originFractY = 0.5
     }
+
+myWorkspaces = ["1:main", "2:doc"]

@@ -7,7 +7,7 @@ in {
   programs.home-manager.enable = true;
   home.username = "arpple";
   home.homeDirectory = "/home/arpple";
-  home.stateVersion = "21.05";
+  home.stateVersion = "21.11";
 
   news.display = "silent";
 
@@ -20,6 +20,8 @@ in {
     direnv
     any-nix-shell
     dmenu
+    xmobar
+    trayer
     awscli2
 
     firefox
@@ -50,9 +52,10 @@ in {
     php74Packages.composer
 
     unstable.elixir
-    elixir_ls
+    unstable.elixir_ls
 
     elmPackages.elm
+    elmPackages.elm-format
 
     clojure
     leiningen
@@ -102,6 +105,7 @@ in {
   programs.starship.enable = true;
 
   home.file.".xinitrc".source = ./xinitrc;
+  home.file.".xmonad/xmobar.hs".source = ./xmobar.hs;
   home.file.".xmonad/xmonad.hs".source = ./xmonad.hs;
   home.file.".config/alacritty/alacritty.yml".source = ./alacritty.yml;
   home.file.".config/starship.toml".source = ./starship.toml;

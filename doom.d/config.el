@@ -71,6 +71,8 @@
   ;; (flycheck-select-checker 'javascript-eslint)
   (map! :n "<f2>" #'tide-rename-symbol))
 
+(setq js-indent-level 1)
+
 
 ;; open default file when switch project
 (defvar project-file nil)
@@ -78,11 +80,11 @@
 
 (setq +workspaces-switch-project-function
       (lambda (dir)
-        (let ((default-directory dir))
-          (hack-dir-local-variables-non-file-buffer)
-          (if (bound-and-true-p project-file)
-              (find-file (expand-file-name project-file dir))
-            (doom-project-find-file dir)))))
+	(let ((default-directory dir))
+	  (hack-dir-local-variables-non-file-buffer)
+	  (if (bound-and-true-p project-file)
+	      (find-file (expand-file-name project-file dir))
+	      (doom-project-find-file dir)))))
 
 
 ;; elixir
@@ -94,14 +96,17 @@
 ;; Enable format and iex reload on save
 (after! lsp
   (add-hook 'elixir-mode-hook
-            (lambda ()
-              (add-hook 'after-save-hook 'alchemist-iex-reload-module))))
+	    (lambda ()
+	      (add-hook 'after-save-hook 'alchemist-iex-reload-module))))
 
+;; elm
+(setq elm-mode-hook '(elm-indent-simple-mode))
 
 ;; clojure
-(with-eval-after-load 'evil
-  (defalias #'forward-evil-word #'forward-evil-symbol)
-  (setq-default evil-symbol-word-search t))
+;; forward word search to treat kebab-case word as single word
+;; (with-eval-after-load 'evil
+;;   (defalias #'forward-evil-word #'forward-evil-symbol)
+;;   (setq-default evil-symbol-word-search t))
 
 ;; personal dir
 (defun arp/dir ()
@@ -113,29 +118,10 @@
 	(print! "no .arpple dir created"))))
 
 
-(defun arp/ansi-term-toggle ()
-  "Toggle ansi-term window on and off with the same command."
-  (interactive)
-  (defvar my--ansi-term-name "ansi-term-popup")
-  (defvar my--window-name (concat "*" my--ansi-term-name "*"))
-  (cond ((get-buffer-window my--window-name)
-         (ignore-errors (delete-window
-                         (get-buffer-window my--window-name))))
-        (t (split-window-below)
-           (other-window 1)
-           (cond ((get-buffer my--window-name)
-                  (switch-to-buffer my--window-name))
-                 (t (ansi-term "bash" my--ansi-term-name))))))
-
 (map! :leader
       :desc "open secret .arpple dir"
       :prefix "f"
       "a" #'arp/dir)
-
-(map! :leader
-      :desc "Terminal"
-      :prefix "t"
-      "t" #'arp/ansi-term-toggle)
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
