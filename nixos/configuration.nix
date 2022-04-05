@@ -83,6 +83,8 @@
     wget
     git
     docker-compose
+
+    lens
   ];
 
   programs.fish.enable = true;

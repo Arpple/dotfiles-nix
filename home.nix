@@ -25,8 +25,7 @@ in {
     awscli2
 
     firefox
-    lens
-    
+
     (ripgrep.override { withPCRE2 = true; })
     fd
     imagemagick
@@ -56,6 +55,7 @@ in {
 
     elmPackages.elm
     elmPackages.elm-format
+    elmPackages.elm-test
 
     clojure
     leiningen
