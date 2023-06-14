@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running `nixos-help`).
 
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   imports =
@@ -37,6 +37,20 @@
   virtualisation.virtualbox.guest.enable = true;
   virtualisation.virtualbox.guest.x11 = true;
 
+  # TODO: remove me after https://github.com/NixOS/nixpkgs/pull/86473 is applied
+  services.xserver.videoDrivers = lib.mkForce [ "vmware" "virtualbox" "modesetting" ];
+  systemd.services.virtualbox-resize = {
+    description = "VirtualBox Guest Screen Resizing";
+
+    wantedBy = [ "multi-user.target" ];
+    requires = [ "dev-vboxguest.device" ];
+    after = [ "dev-vboxguest.device" ];
+
+    unitConfig.ConditionVirtualization = "oracle";
+
+    serviceConfig.ExecStart = "@${config.boot.kernelPackages.virtualboxGuestAdditions}/bin/VBoxClient -fv --vmsvga";
+  };
+
   # Enable the X11 windowing system.
   services.xserver = {
     enable = true;
@@ -46,6 +60,10 @@
     autoRepeatInterval = 25;
 
     displayManager.defaultSession = "none+i3";
+    displayManager.autoLogin = {
+      enable = true;
+      user = "arpple";
+    };
 
     windowManager.i3 = {
       enable = true;
@@ -78,6 +96,8 @@
     shell = pkgs.fish;
   };
 
+  services.getty.autologinUser = "arpple";
+
   fonts.fonts = with pkgs; [
     powerline-fonts
   ];
@@ -91,6 +111,8 @@
   ];
 
   programs.fish.enable = true;
+
+  nixpkgs.config.allowUnfree = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -123,6 +145,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.05"; # Did you read the comment?
-
 }
-
