@@ -40,8 +40,8 @@
 
 (custom-set-faces!
   '(hl-line :background "#353535")
-  '(hl-fill-column-face :background "#ee7600")
-  )
+  '(hl-fill-column-face :background "#ee7600"))
+  
 
 (setq-default tab-width 2
               indent-tabs-mode t
@@ -73,6 +73,9 @@
 
 (after! treemacs
   (treemacs-follow-mode))
+
+;; centaur-tabs
+(setq centaur-tabs-excluded-prefixes (list "*" "Treemacs Update"))
 
 
 ;; If you use `org' and don't want your org files in the default location below,
@@ -111,3 +114,17 @@
 ;;
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
+
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.  ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(elixir-atom-face ((t (:inherit font-lock-constant-face :foreground "#BD63C5"))))
+ '(font-lock-comment-face ((t (:foreground "yellow" :slant italic))))
+ '(font-lock-constant-face ((t (:foreground "#BD63C5"))))
+ '(font-lock-function-name-face ((t (:foreground "#A6FF2E"))))
+ '(font-lock-variable-name-face ((t (:foreground "#3BDAAF"))))
+ '(hl-fill-column-face ((t (:background "#ee7600"))))
+ '(hl-line ((t (:background "#353535"))))
+ '(treemacs-git-ignored-face ((t (:foreground "gray45"))))
+ '(treemacs-git-untracked-face ((t (:inherit (variable-pitch font-lock-doc-face) :foreground "chartreuse1")))))

@@ -11,29 +11,41 @@
   news.display = "silent";
 
   nixpkgs.config.allowUnfree = true;
-  
+
   home.packages = with pkgs; [
     git
     fish
     alacritty
     starship
     emacs
+    neovim
     direnv 
-    dmenu
     polybar
     firefox
     asdf-vm
     any-nix-shell
     killall
     bspwm
+    chromium
 
     ripgrep
     fd
+    gnumake
+    unzip
+    nodejs_20
+    zig
+    python3
 
     awscli2
     yarn
     google-chrome
     slack
+    xorg.libXScrnSaver
+    postman
+    vscode
+
+    nodePackages.typescript-language-server
+    lua-language-server
   ];
 
   fonts.fontconfig.enable = true;
@@ -54,12 +66,15 @@
     shellInit = ''
       set fish_greeting
       set -xg PATH ~/.config/emacs/bin $PATH
+      set -xg PATH ~/.local/bin $PATH
       any-nix-shell fish --info-right | source
+      alias chrome=google-chrome-stable
     '';
   };
 
   programs.alacritty.enable = true;
   programs.starship.enable = true;
+  programs.chromium.enable = true;
 
   services.polybar = {
     enable = true;

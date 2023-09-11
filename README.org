@@ -64,13 +64,13 @@ nix-shell -p nodejs-16_x # or other version
 npm install
 #+end_src
 
-*** dmenu application not update
-clear cache
-#+begin_src fish
-rm ~/.cache/dmenu_run
-#+end_src
-
 *** start emacs server
 #+begin_src fish
 systemctl --user enable --now emacs
+#+end_src
+
+*** rofi theme break after upgrade system
+run select theme again
+#+begin_src fish
+rofi-select-theme
 #+end_src
