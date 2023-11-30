@@ -51,3 +51,4 @@
 (unpin! lsp-mode)
 (package! csv-mode)
 (package! yaml-mode)
+(package! handlebars-mode)

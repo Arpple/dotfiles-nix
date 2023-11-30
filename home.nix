@@ -35,6 +35,8 @@
     nodejs_20
     zig
     python3
+    bash
+    zip
 
     awscli2
     yarn
@@ -43,9 +45,13 @@
     xorg.libXScrnSaver
     postman
     vscode
+    ngrok
+    aws-workspaces
 
     nodePackages.typescript-language-server
     lua-language-server
+    ocaml
+    opam
   ];
 
   fonts.fontconfig.enable = true;
@@ -67,8 +73,14 @@
       set fish_greeting
       set -xg PATH ~/.config/emacs/bin $PATH
       set -xg PATH ~/.local/bin $PATH
+      set -xg PATH ~/.npm-packages/bin $PATH
+      set -xg NODE_PATH ~/.npm-packages/lib/node_modules
+      set -xg NIXPKGS_ALLOW_INSECURE 1
       any-nix-shell fish --info-right | source
       alias chrome=google-chrome-stable
+
+      # opam configuration
+      source ~/.opam/opam-init/init.fish > /dev/null 2> /dev/null; or true
     '';
   };
 
